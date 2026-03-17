@@ -832,6 +832,11 @@ body[data-theme='light'] .theme-btn .icon-sun { display: none; }
   box-shadow: 0 4px 18px rgba(245,193,51,.4);
   transform: translateY(-2px) scale(1.03);
 }
+
+body[data-theme='light'] .btn-primary,
+body[data-theme='light'] .btn-register {
+  color: #ffffff;
+}
 .btn-photos {
   background: var(--bg-card);
   color: var(--text-2);
@@ -1385,7 +1390,7 @@ body[data-theme='light'] .footer-social a {
 /* Desktop 1024px */
 @media (min-width: 1024px) {
   .events-grid { grid-template-columns: repeat(2, 1fr); }
-  .why-grid    { grid-template-columns: repeat(4, 1fr); }
+  .why-grid    { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
 }
 
