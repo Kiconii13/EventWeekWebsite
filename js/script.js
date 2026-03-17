@@ -225,6 +225,112 @@ document.addEventListener('touchstart', e => {
   }
 }, { passive: true });
 
+/* ─── 10b. SOFTWARE DOWNLOAD MODAL ─────────────────────────── */
+const softwareDownloads = {
+  git: {
+    name: 'Git',
+    url: 'https://git-scm.com/'
+  },
+  githubdesktop: {
+    name: 'GitHub Desktop',
+    url: 'https://desktop.github.com/download/'
+  },
+  godot: {
+    name: 'Godot Engine',
+    url: 'https://godotengine.org/'
+  },
+  virtualbox: {
+    name: 'Oracle VirtualBox',
+    url: 'https://www.virtualbox.org/'
+  },
+  kalilinux: {
+    name: 'Kali Linux',
+    url: 'https://www.kali.org/'
+  },
+  go: {
+    name: 'Go Programming Language',
+    url: 'https://go.dev/'
+  },
+  hugo: {
+    name: 'Hugo',
+    url: 'https://gohugo.io/installation/'
+  },
+  python: {
+    name: 'Python 3.10+',
+    url: 'https://www.python.org/downloads/'
+  },
+  vscode: {
+    name: 'Visual Studio Code',
+    url: 'https://code.visualstudio.com/download'
+  }
+};
+
+const modal = document.getElementById('software-modal');
+const modalBody = document.getElementById('modal-body');
+const modalClose = document.getElementById('modal-close');
+
+function openSoftwareModal(softwareIds) {
+  if (!modal || !modalBody) return;
+  
+  const softwareList = softwareIds.split(',').map(id => id.trim());
+  let html = '';
+  
+  softwareList.forEach(id => {
+    const software = softwareDownloads[id];
+    if (software) {
+      html += `
+        <div class="software-link-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+          <a href="${software.url}" target="_blank" rel="noopener noreferrer">
+            ${software.name}
+          </a>
+        </div>
+      `;
+    }
+  });
+  
+  if (html === '') {
+    html = '<p style="color: var(--clr-text); opacity: 0.7;">Nema dostupnih softverskih paketa.</p>';
+  }
+  
+  modalBody.innerHTML = html;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeSoftwareModal() {
+  if (!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+}
+
+// Software button click handlers
+document.querySelectorAll('.btn-software').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    const software = btn.getAttribute('data-software');
+    if (software) openSoftwareModal(software);
+  });
+});
+
+// Modal close button
+modalClose?.addEventListener('click', closeSoftwareModal);
+
+// Close modal on backdrop click
+modal?.addEventListener('click', e => {
+  if (e.target === modal) closeSoftwareModal();
+});
+
+// Close modal on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && modal?.classList.contains('open')) {
+    closeSoftwareModal();
+  }
+});
+
 /* ─── 11. SCROLL-TO-TOP ──────────────────────────────────────── */
 scrollTopBtn?.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });

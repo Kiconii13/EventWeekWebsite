@@ -814,6 +814,136 @@ h1,h2,h3,h4 {
   visibility: visible;
 }
 
+/* ─── 10c. SOFTWARE DOWNLOAD MODAL ──────────────────────────── */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.modal-content {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid rgba(245,193,51,.2);
+  border-radius: var(--radius-l);
+  box-shadow: 0 20px 60px rgba(0,0,0,.8);
+  padding: 0;
+  max-width: 420px;
+  width: 90%;
+  transform: scale(0.95) translateY(20px);
+  opacity: 0;
+  transition: opacity .3s ease, transform .3s ease;
+  max-height: 80vh;
+  overflow-y: auto;
+  backdrop-filter: blur(12px);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(245,193,51,.15);
+  background: rgba(245,193,51,.05);
+}
+
+.modal-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--clr-primary);
+  margin: 0;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-2);
+  cursor: pointer;
+  padding: 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color .2s ease;
+  border-radius: 4px;
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+  color: var(--clr-primary);
+  outline: none;
+}
+
+.modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.software-link-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(245,193,51,.08);
+  border: 1px solid rgba(245,193,51,.15);
+  border-radius: var(--radius-s);
+  transition: all .2s ease;
+}
+
+.software-link-item svg {
+  color: var(--clr-primary);
+  flex-shrink: 0;
+}
+
+.software-link-item a {
+  flex: 1;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: .95rem;
+  transition: color .2s ease;
+}
+
+.software-link-item a:hover,
+.software-link-item a:focus-visible {
+  color: var(--clr-primary);
+  outline: none;
+}
+
+.software-link-item:hover {
+  background: rgba(245,193,51,.14);
+  border-color: rgba(245,193,51,.3);
+  transform: translateX(4px);
+}
+
+/* Modal open state */
+.modal.open {
+  pointer-events: auto;
+}
+
+.modal.open .modal-backdrop {
+  opacity: 1;
+}
+
+.modal.open .modal-content {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
 /* ─── 11. WHY SECTION ─────────────────────────────────────────── */
 .why-section {
   padding: 100px 0;
