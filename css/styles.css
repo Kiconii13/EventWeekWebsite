@@ -1105,7 +1105,13 @@ body[data-theme='light'] .btn-register {
   backdrop-filter: blur(8px);
 }
 
-.organizer-logo-col { text-align: center; }
+.organizer-logo-col {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .proton-logo-svg {
   width: 110px; height: 110px;
   margin: 0 auto 20px;  animation: rotateSlow 20s linear infinite;  
@@ -1136,6 +1142,20 @@ body[data-theme='light'] .btn-register {
   color: var(--text-2);
   line-height: 1.7;
   margin-bottom: 12px;
+}
+
+.organizer-info-col p a {
+  color: var(--clr-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color .2s var(--ease);
+}
+
+.organizer-info-col p a:hover,
+.organizer-info-col p a:focus-visible {
+  color: var(--clr-primary-l);
 }
 
 .organizer-social {
@@ -1381,7 +1401,7 @@ body[data-theme='light'] .footer-social a {
 
   .organizer-card {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 48px;
   }
   .organizer-logo-col { flex-shrink: 0; width: 200px; }
